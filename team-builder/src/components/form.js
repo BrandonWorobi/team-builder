@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-
+import { v4 as uuid } from 'uuid';
 const initialFormValues = {
 	name: '',
 	email: '',
 	role: '',
-      }
+}
       
-      function Form(props) {
+function Form(props) {
 	const { addNewMember } = props;
 	const [formValues, setFormValues] = useState(initialFormValues);
       
@@ -21,55 +21,61 @@ const initialFormValues = {
 	const onSubmit = evt => {
 	  evt.preventDefault();
 	  const newMember = {
+	    id: uuid(),
 	    name: formValues.name.trim(),
 	    email: formValues.email.trim(),
 	    role: formValues.role,
 	  }
-	  if (newMember.name && newMember.email && newMember.role) {
+	  if (newMember.name) {
 	    addNewMember(newMember);
 	    setFormValues(initialFormValues);
 	  }
 	  else {
-	    console.log(`newMember missing field: ${newMember.name} ${newMember.email} ${newMember.role}`);
+		alert(`Name must be filled out`);
 	  }
 	}
       
 	return (
 	  <form className='form container' onSubmit={onSubmit}>
-	    <h2>Add New Team Member</h2>
-	    <label>Name
-	      <input 
-		name='name'
-		type='text'
-		value={formValues.name}
-		onChange={onChange}
-		placeholder='Firstname Lastname'
-		required
-	      />
-	    </label>
-	    <label>Email
-	      <input 
-		name='email'
-		type='email'
-		value={formValues.email}
-		onChange={onChange}
-		placeholder='firstlast@company.com'
-		required
-	      />
-	    </label>
-	    <label>Role
-	      <select name='role' value={formValues.role} onChange={onChange} required>
-		<option value='' selected disabled>--- Select role ---</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-		<option value='#'>Test Option</option>
-	      </select>
-	    </label>
-	    <button>Submit</button>
+	<h2>Add New Team Member</h2>
+	<div className='form-inputs'>
+       
+        <label>Name
+          <input 
+            name='name'
+            type='text'
+            value={formValues.name}
+            onChange={onChange}
+            placeholder='Firstname Lastname'
+            required
+          />
+        </label>
+        <label>Email
+          <input 
+            name='email'
+            type='email'
+            value={formValues.email}
+            onChange={onChange}
+            placeholder='firstlast@company.com'
+            required
+          />
+        </label>
+        <label>Role
+          <select name='role' value={formValues.role} onChange={onChange} required>
+            <option value='' selected disabled>--- Select role ---</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+            <option value='#'>Test Option</option>
+          </select>
+        </label>
+      </div>
+      <div className='submit'>
+        <button>Submit</button>
+      </div>
 	  </form>
 	);
 }
