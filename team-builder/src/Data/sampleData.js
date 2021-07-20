@@ -25,12 +25,6 @@ const sampleData = [
 	email: 'mrruby@dia.gov',
 	role: 'Defense Intelligence Agency',
 },
-{
-	id: uuid(),
-	name: 'Mr. Keyes'
-	email: 'mrkeyes@dia.gov'
-	role: 'Defense Intelligence Agency'
-  }
 ];
 
 export default sampleData; 
